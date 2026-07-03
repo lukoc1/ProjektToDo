@@ -10,6 +10,7 @@ public class UI {
         for (var option : menuOptions) {
             System.out.println(option);
         }
+        System.out.println(ConsoleColors.RED + "--------------------" + ConsoleColors.RESET);
 
     }
 }
