@@ -1,10 +1,7 @@
 package org.example;
 
-import org.apache.commons.lang3.time.DateParser;
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
