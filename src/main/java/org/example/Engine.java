@@ -1,10 +1,9 @@
 package org.example;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Engine {
@@ -46,19 +45,27 @@ public class Engine {
         System.out.println("Please add task description.");
         do {
             System.out.println("Description cannot contain ','.");
-            line = scan.nextLine().strip();
+            line = StringUtils.normalizeSpace(scan.nextLine());
         } while(line.contains(","));
         newTask[0] = line;
 
-        System.out.println("Please add task due date");
-        line = scan.nextLine().strip();
+        System.out.println("Please add task due date (use yyyy-MM-dd format)");
+        while (true) {
+            line = StringUtils.normalizeSpace(scan.nextLine());
+            if (Utils.isValidDate(line)) {
+                break;
+            } else {
+                System.out.println(ConsoleColors.YELLOW + "Given text is not in a applicable date format."
+                        + " Try again and use yyyy-MM-dd" + ConsoleColors.RESET);
+            }
+        }
         newTask[1] = line;
 
         System.out.println("Is your task important: true/false");
-        line = scan.nextLine().strip();
+        line = StringUtils.normalizeSpace(scan.nextLine());
         while (!"true".equals(line) && !"false".equals(line)) {
             System.out.println(ConsoleColors.YELLOW + "Input not applicable. Only options are: true/false" + ConsoleColors.RESET);
-            line = scan.nextLine().replace(",", ".").strip();
+            line = StringUtils.normalizeSpace(scan.nextLine());
         }
         newTask[2] = line;
 

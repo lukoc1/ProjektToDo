@@ -1,7 +1,12 @@
 package org.example;
 
+import org.apache.commons.lang3.time.DateParser;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class Utils {
@@ -19,6 +24,15 @@ public class Utils {
             System.out.println("Successfully saved tasks to: " + fileName);
         } catch (FileNotFoundException e) {
             System.out.println("Could not find file: " + fileName);
+        }
+    }
+
+    public static boolean isValidDate(String text) {
+        try {
+            LocalDate.parse(text);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
         }
     }
 

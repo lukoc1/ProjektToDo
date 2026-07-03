@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class TaskFileReader {
     public static String[][] readSavedTasks() {
         var fileName = "tasks.csv";
+
         try (var scan = new Scanner(new File(fileName));
              var scan2 = new Scanner(new File(fileName))){
 
