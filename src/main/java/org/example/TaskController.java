@@ -3,12 +3,11 @@ package org.example;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Locale;
 import java.util.Scanner;
 
-public class Engine {
+public class TaskController {
 
-    public static void startGame(String[][] tasks, String fileName) {
+    public static void run(String[][] tasks, String fileName) {
 
         var scan = new Scanner(System.in);
         var input = "";

@@ -9,6 +9,6 @@ public class TaskManager {
 
         String[][] tasks = TaskFileReader.readSavedTasks(TASKS_FILE);
 
-        Engine.startGame(tasks, TASKS_FILE);
+        TaskController.run(tasks, TASKS_FILE);
     }
 }
