@@ -20,12 +20,12 @@ public class Engine {
                 case "add":
                     tasks = addTask(tasks);
                     break;
-                //            case "remove":
-                //                removeTask();
-                //                break;
-                //            case "list":
-                //                listTasks();
-                //                break;
+//                case "remove":
+//                    removeTask();
+//                    break;
+                case "list":
+                    listTasks(tasks);
+                    break;
                 //            case "exit":
                 //                exitGame();
                 //                break;
@@ -72,9 +72,15 @@ public class Engine {
 //
 //    }
 //
-//    private static void listTask() {
-//
-//    }
+    private static void listTasks(String[][] tasks) {
+        for (int i = 0; i < tasks.length; i++) {
+            System.out.print(i + " : ");
+            for (int j = 0; j < tasks[i].length; j++) {
+                System.out.print(tasks[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 //
 //    private static void exitGame() {
 //
