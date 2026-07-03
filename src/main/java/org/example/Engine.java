@@ -1,7 +1,9 @@
 package org.example;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -26,9 +28,9 @@ public class Engine {
                 case "list":
                     listTasks(tasks);
                     break;
-                //            case "exit":
-                //                exitGame();
-                //                break;
+                case "exit":
+                    exitGame(tasks);
+                    break;
                 default:
                     System.out.println("Please select a correct option.");
             }
@@ -77,13 +79,14 @@ public class Engine {
         var line = scan.nextLine().strip();
         while (true) {
             try {
-                int num = Integer.valueOf(line);
+                int num = Integer.parseInt(line);
                 if (num > tasksNum || num < 0) {
-                    System.out.println("Input is out of scope. Possible options are: 0 -> " + tasksNum);
+                    System.out.println(ConsoleColors.YELLOW + "Input is out of scope. Possible options are: 0 -> "
+                            + tasksNum + ".\nTry again." + ConsoleColors.RESET);
                     line = scan.nextLine().strip();
                 } else {
-                    tasks = Utils.removeFromArray(tasks, num);
-                    System.out.println("Value was successfully deleted.");
+                    tasks = ArrayUtils.remove(tasks, num);
+                    System.out.println("Task was successfully deleted.");
                     break;
                 }
 
@@ -108,8 +111,21 @@ public class Engine {
             System.out.println();
         }
     }
-//
-//    private static void exitGame() {
-//
-//    }
+
+    private static void exitGame(String[][] tasks) {
+        saveTasksToFile(tasks);
+        System.out.println("Bye, bye.");
+    }
+
+    private static void saveTasksToFile(String[][] tasks) {
+        var fileName = "tasksSAVED.csv";
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            for (var task : tasks) {
+                writer.println(Arrays.toString(task));
+            }
+            System.out.println("Successfully saved tasks to: " + fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find file: " + fileName);
+        }
+    }
 }
