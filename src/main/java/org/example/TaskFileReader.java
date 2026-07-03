@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ReadSavedTasks {
+public class TaskFileReader {
     public static String[][] readSavedTasks() {
         var fileName = "tasks.csv";
         try (var scan = new Scanner(new File(fileName));

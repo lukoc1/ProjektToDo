@@ -113,19 +113,9 @@ public class Engine {
     }
 
     private static void exitGame(String[][] tasks) {
-        saveTasksToFile(tasks);
+        var fileName = "tasksSAVED.csv";
+        Utils.saveToFile(tasks, fileName);
         System.out.println("Bye, bye.");
     }
 
-    private static void saveTasksToFile(String[][] tasks) {
-        var fileName = "tasksSAVED.csv";
-        try (PrintWriter writer = new PrintWriter(fileName)) {
-            for (var task : tasks) {
-                writer.println(Arrays.toString(task));
-            }
-            System.out.println("Successfully saved tasks to: " + fileName);
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not find file: " + fileName);
-        }
-    }
 }
