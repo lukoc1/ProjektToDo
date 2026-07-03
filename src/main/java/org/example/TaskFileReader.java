@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TaskFileReader {
-    public static String[][] readSavedTasks() {
-        var fileName = "tasks.csv";
+    public static String[][] readSavedTasks(String fileName) {
 
         try (var scan = new Scanner(new File(fileName));
              var scan2 = new Scanner(new File(fileName))){

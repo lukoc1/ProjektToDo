@@ -16,7 +16,7 @@ public class Utils {
     public static void saveToFile(String[][] tasks, String fileName) {
         try (PrintWriter writer = new PrintWriter(fileName)) {
             for (var task : tasks) {
-                writer.println(Arrays.toString(task));
+                writer.println(String.join(", ", task));
             }
             System.out.println("Successfully saved tasks to: " + fileName);
         } catch (FileNotFoundException e) {

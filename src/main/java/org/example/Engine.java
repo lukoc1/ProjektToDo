@@ -3,18 +3,19 @@ package org.example;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Engine {
 
-    public static void startGame(String[][] tasks) {
+    public static void startGame(String[][] tasks, String fileName) {
 
         var scan = new Scanner(System.in);
         var input = "";
 
         do {
             UI.displayMenu();
-            input = scan.nextLine();
+            input = StringUtils.normalizeSpace(scan.nextLine());
 
             switch (input) {
                 case "add":
@@ -27,7 +28,7 @@ public class Engine {
                     listTasks(tasks);
                     break;
                 case "exit":
-                    exitGame(tasks);
+                    exitGame(tasks, fileName);
                     break;
                 default:
                     System.out.println("Please select a correct option.");
@@ -118,8 +119,7 @@ public class Engine {
         }
     }
 
-    private static void exitGame(String[][] tasks) {
-        var fileName = "tasksSAVED.csv";
+    private static void exitGame(String[][] tasks, String fileName) {
         Utils.saveToFile(tasks, fileName);
         System.out.println("Bye, bye.");
     }
