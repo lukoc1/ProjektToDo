@@ -8,4 +8,16 @@ public class Utils {
         added[added.length - 1] = value;
         return added;
     }
+
+    public static String[][] removeFromArray(String[][] arr, int id) {
+        String[][] temp = {};
+        for (int i = 0; i < arr.length; i++) {
+            if (id == i) {
+                continue;
+            }
+            temp = addToArray(temp, arr[i]);
+        }
+        return temp;
+
+    }
 }
