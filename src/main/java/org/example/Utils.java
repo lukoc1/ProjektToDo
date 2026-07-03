@@ -13,17 +13,6 @@ public class Utils {
         return added;
     }
 
-    public static void saveToFile(String[][] tasks, String fileName) {
-        try (PrintWriter writer = new PrintWriter(fileName)) {
-            for (var task : tasks) {
-                writer.println(String.join(", ", task));
-            }
-            System.out.println("Successfully saved tasks to: " + fileName);
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not find file: " + fileName);
-        }
-    }
-
     public static boolean isValidDate(String text) {
         try {
             LocalDate.parse(text);

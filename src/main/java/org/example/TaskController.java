@@ -119,7 +119,7 @@ public class TaskController {
     }
 
     private static void exitGame(String[][] tasks, String fileName) {
-        Utils.saveToFile(tasks, fileName);
+        TaskStorage.saveToFile(tasks, fileName);
         System.out.println("Bye, bye.");
     }
 

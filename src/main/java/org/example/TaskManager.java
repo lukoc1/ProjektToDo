@@ -7,7 +7,7 @@ public class TaskManager {
 
     public static void main(String[] args) {
 
-        String[][] tasks = TaskFileReader.readSavedTasks(TASKS_FILE);
+        String[][] tasks = TaskStorage.readSavedTasks(TASKS_FILE);
 
         TaskController.run(tasks, TASKS_FILE);
     }
