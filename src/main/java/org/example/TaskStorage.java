@@ -8,32 +8,26 @@ import java.util.Scanner;
 public class TaskStorage {
     public static String[][] readSavedTasks(String fileName) {
 
-        try (var scan = new Scanner(new File(fileName));
-             var scan2 = new Scanner(new File(fileName))){
+        try (var scan = new Scanner(new File(fileName))){
 
-            var rowsNum = 0;
-            while (scan.hasNextLine()) {
-                scan.nextLine();
-                rowsNum++;
+            String[][] tasks = {};
+
+            while(scan.hasNextLine()) {
+                var line = scan.nextLine();
+                var parts = line.split(",\\s+");
+
+                if (!Utils.isValidTaskRow(parts)) {
+                    throw new IllegalArgumentException("Invalid row in file: "
+                                + fileName + " -> " + line);
+                }
+                tasks = Utils.addToArray(tasks, parts);
             }
-
-            String[][] tasks = new String[rowsNum][3];
-
-            int row = 0;
-            while(scan2.hasNextLine()) {
-                var line = scan2.nextLine();
-                var parts = line.split("," + "\\s+");
-                tasks[row][0] = parts[0];
-                tasks[row][1] = parts[1];
-                tasks[row][2] = parts[2];
-                row++;
-            }
-            return (tasks);
+            return tasks;
 
         } catch (FileNotFoundException e) {
-            System.out.println("Nie udało się odczytać pliku: " + fileName);
+            System.out.println("Could not read from file: " + fileName);
         }
-        return (new String[0][0]);
+        return new String[0][0];
     }
 
     public static void saveToFile(String[][] tasks, String fileName) {

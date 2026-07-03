@@ -1,7 +1,5 @@
 package org.example;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
@@ -20,6 +18,11 @@ public class Utils {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    public static boolean isValidTaskRow(String[] task) {
+        return (task.length == 3 && isValidDate(task[1])
+                && ("true".equals(task[2]) || "false".equals(task[2])));
     }
 
 }
